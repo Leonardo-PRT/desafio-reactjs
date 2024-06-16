@@ -15,4 +15,3 @@ EXPOSE 8080
 RUN npm install -g serve
 
 CMD ["serve", "-s", "build", "-l", "8000"]
-
