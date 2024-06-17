@@ -1,6 +1,8 @@
 # Web Task Management
+## Rodando a Aplicação
 
-1. Inicie as aplicações usando o Docker Compose na raiz do projeto:
+Para rodar as aplicações, você precisa do Docker e Docker Compose instalados na sua máquina. Siga os passos abaixo:
+1. rode o seguinte comando na raiz do projeto
 
 ```
 docker-compose up --build
@@ -20,11 +22,9 @@ Este é um aplicativo de gerenciamento de projetos construído com NestJS. O apl
 - Tags: Criar, atualizar, excluir, listar tags e detalhe.
 - Registro de Logs: Logs são salvos no diretório de logs. erros são registrados.
 
-## Rodando a Aplicação
+## Inserir dados necessários na base de dados
 
-Para rodar a aplicação, você precisa do Docker e Docker Compose instalados na sua máquina. Siga os passos abaixo:
-
-2. Rodar o seed.ts e ter dados necessários para o funcionamento do front-end
+1. Rodar o seed.ts e ter dados necessários para o funcionamento do front-end
 - rodar os seguintes comandos dentro do container da api
 
 ```
