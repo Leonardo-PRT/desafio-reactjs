@@ -70,19 +70,17 @@ describe('UserService', () => {
       });
     });
 
-    it('should throw InternalServerErrorException when user email already exists', async () => {
+    it('should throw BadRequestException when user email already exists', async () => {
       const createUserDto: CreateUserDto = {
         name: 'Test user',
         email: 'test@test.com',
         password: 'password',
       };
 
-      (prisma.user.create as jest.Mock).mockRejectedValueOnce(
-        new InternalServerErrorException(),
-      );
+      (prisma.user.findUnique as jest.Mock).mockResolvedValue(createUserDto);
 
       await expect(service.create(createUserDto)).rejects.toThrow(
-        InternalServerErrorException,
+        BadRequestException,
       );
     });
   });

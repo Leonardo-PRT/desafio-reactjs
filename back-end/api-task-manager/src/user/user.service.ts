@@ -20,6 +20,18 @@ export class UserService {
   constructor(private prisma: PrismaService) {}
 
   async create(userDTO: CreateUserDto) {
+    const userFound = await this.prisma.user.findUnique({
+      where: { email: userDTO.email },
+    });
+
+    if (userFound) {
+      this.logger.warn(`User with email ${userDTO.email} already exists`);
+      throw new BadRequestException(
+        userFound.email,
+        'There is already a user with this email',
+      );
+    }
+
     try {
       const userData = { ...userDTO };
 
@@ -29,17 +41,6 @@ export class UserService {
         data: { ...userData, password: decryptPassword },
       });
     } catch (error) {
-      if (error instanceof Prisma.PrismaClientKnownRequestError) {
-        const uniqueField = error.meta.target[0];
-        const field = uniqueField.split('.').pop();
-        const value = userDTO[field];
-
-        this.logger.error(`User with ${field} ${value} already exists`);
-        throw new BadRequestException(
-          `User with ${field} ${value} already exists`,
-        );
-      }
-
       this.logger.error(`Failed to create user: ${error.message}`);
       throw new InternalServerErrorException(
         `Failed to create user: ${error.message}`,
