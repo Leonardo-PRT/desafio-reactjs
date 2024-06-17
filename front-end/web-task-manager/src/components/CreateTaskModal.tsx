@@ -42,6 +42,7 @@ const CreateTaskModal: React.FC<CreateTaskModalProps> = ({ isOpen, onRequestClos
             await createTask(title, description, projectId, selectedTags);
             onTaskCreated();
             onRequestClose();
+            window.location.reload();
         } catch (error) {
             console.error("Erro ao criar tarefa:", error);
         }
