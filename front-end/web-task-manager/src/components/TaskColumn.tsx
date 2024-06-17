@@ -11,6 +11,7 @@ interface Task {
     title: string;
     description: string;
     status: string;
+    createdAt: string;
     TaskTag: Array<{ tag: { id: number; title: string } }>;
 }
 
@@ -35,7 +36,8 @@ const TaskColumn: React.FC<TaskColumnProps> = ({ status, tasks, onTaskDrop }) =>
         <div ref={drop} className="task-column" style={{ backgroundColor: isOver ? '#f0f0f0' : '#fff' }}>
             <h2>{status}</h2>
             {tasks.map((task) => (
-                <TaskCard key={task.id} id={task.id} title={task.title} description={task.description} tags={task.TaskTag.map(t => t.tag)} />
+                <TaskCard key={task.id} id={task.id} title={task.title} description={task.description}
+                          tags={task.TaskTag.map(t => t.tag)} createdAt={task.createdAt} />
             ))}
         </div>
     );

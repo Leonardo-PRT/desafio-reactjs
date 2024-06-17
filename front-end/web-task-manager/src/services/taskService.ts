@@ -17,3 +17,13 @@ export const updateTask = (task: Task, userId: number, status: string) => {
         tags: task.TaskTag.map(tag => tag.tag.id),
     });
 }
+
+export const createTask = (title: string, description: string, projectId: number, selectedTags: number[]) => {
+    return api.post('/task/create-task?userId=1', {
+        title,
+        description,
+        status: 'Pending',
+        projectId,
+        tags: selectedTags,
+    });
+}

@@ -1,12 +1,15 @@
 import React, { useState, useContext } from 'react';
-import { Link } from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import CreateProjectModal from './CreateProjectModal';
 import '../styles/main.css';
 import {ProjectContext} from "../context/ProjectContext.tsx";
 
 const Sidebar: React.FC = () => {
+
     const { user, projects, loadProjects } = useContext(ProjectContext);
     const [isModalOpen, setIsModalOpen] = useState(false);
+
+
 
     const handleOpenModal = () => {
         setIsModalOpen(true);
