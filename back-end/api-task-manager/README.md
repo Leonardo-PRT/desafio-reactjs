@@ -21,6 +21,16 @@ Para rodar a aplicação, você precisa do Docker e Docker Compose instalados na
 docker-compose up --build
 ```
 
+2. Rodar o seed.ts e ter dados necessarios para o funcionamento do front-end
+- rodar os seguintes comandos dentro do container da api
+
+```
+docker exec -it <container_id_or_name> /bin/bash
+```
+```
+npx ts-node ./src/seed.ts
+```
+
 2. Acesse a aplicação: A aplicação estará acessível em: ```http://localhost:3000```.
 
 ## Documentação da API
